@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  teachme-db:
+    build: .
+    container_name: teachme-oracle-db
+    ports:
+      - "1521:1521"
+      - "5500:5500"
+    environment:
+      - ORACLE_PWD=teachme123
+      - ORACLE_SID=XE
+      - ORACLE_PDB=TEACHMEPDB
+    volumes:
+      - teachme-data:/opt/oracle/oradata
+    restart: unless-stopped
+
+volumes:
+  teachme-data:
